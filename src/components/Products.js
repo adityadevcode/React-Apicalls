@@ -1,7 +1,7 @@
 import React from "react";
 
 const Products = ({ title, price, image, rating }) => {
-  // console.log(props);
+ 
   return (
     <div className="card">
       <img src={image} />
@@ -14,12 +14,4 @@ const Products = ({ title, price, image, rating }) => {
 
 export default Products;
 
-//(props)
-// props= {
-//   name:length,
-//   price:23
-// }
 
-// return (
-//   <h1>{props.name}</h1>
-// )

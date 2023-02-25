@@ -1,7 +1,8 @@
-// fetch method
+//Axios api call
 import "./App.css";
 import { useState, useEffect } from "react";
 import Products from "./components/Products";
+import axios from "axios";
 
 function App() {
   const [productlist, updateProductlist] = useState([]);
@@ -11,24 +12,18 @@ function App() {
   }, []);
 
   async function data() {
-    let res = await fetch("https://fakestoreapi.com/products");
-    let dataList = await res.json();
-    updateProductlist(dataList);
-    console.log(res);
+    try {
+      const response = await axios.get("https://fakestoreapi.com/products");
+      updateProductlist(response.data);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  //product length is zero
-  if (productlist.length == 0) {
+  if (productlist.length === 0) {
     return <h2>Fetching data ...</h2>;
   }
-
-    // return (
-    //   productlist.map((p)=><Products{...p}></Products>
-    //   )
-    // );
-  
-
-  // (p)=><Products name={p.title} price={p.price}></ProductCard>)
 
   return (
     <>
@@ -39,8 +34,7 @@ function App() {
       </div>
     </>
   );
-        }
-
+}
 
 export default App;
 
